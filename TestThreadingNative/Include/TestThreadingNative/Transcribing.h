@@ -3,6 +3,7 @@
 #include <functional>
 #include <memory>
 #include <optional>
+#include <thread>
 
 class FakeTranscriber;
 
@@ -24,6 +25,8 @@ public:
 private:
    void OnTranscriptionStarted();
    void OnTranscriptionCompleted();
+
+   std::thread::id _threadId;
 
    TranscriptionStartedCallback _transcriptionStartedCallback;
    TranscriptionProgressCallback _transcriptionProgressCallback;

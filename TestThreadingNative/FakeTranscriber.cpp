@@ -24,6 +24,9 @@ public:
 private:
    void ThreadWorker()
    {
+      _progressCallback( 0, true );
+      //std::this_thread::sleep_for ( 50ms );
+
       for ( int i = 0; i <= 100; i++ )
       {
          if ( _exit )
@@ -31,11 +34,11 @@ private:
             return;
          }
 
-         std::this_thread::sleep_for ( 50ms );
+         std::this_thread::sleep_for ( 10ms );
          _progressCallback( i, std::nullopt );
       }
 
-      _progressCallback( 100, true );
+      _progressCallback( 100, false );
    }
 
    std::function<bool(int progress, std::optional<bool> status)> _progressCallback;
