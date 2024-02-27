@@ -7,7 +7,9 @@ Interop::Interop()
 {
    _transcribing = new Transcribing();
 
-   _transcribing->SetCallbacks( InteropHelper::DelegateToStdFunction<TranscriptionProgressCallback>( _transcriptionProgressDelegate ) );
+   _transcribing->SetCallbacks( {},
+                                InteropHelper::DelegateToStdFunction<TranscriptionProgressCallback>( _transcriptionProgressDelegate ),
+                                {} );
 }
 
 void Interop::StartTranscription()

@@ -2,13 +2,14 @@
 
 #include <functional>
 #include <memory>
+#include <optional>
 
 class FakeTranscriberImpl;
 
 class FakeTranscriber
 {
 public:
-   FakeTranscriber( std::function<void(int progress)> progressCallback );
+   FakeTranscriber( std::function<bool(int progress, std::optional<bool> status)> progressCallback );
    ~FakeTranscriber();
 
 private:

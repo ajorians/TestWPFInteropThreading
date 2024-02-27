@@ -8,7 +8,7 @@ using namespace std::chrono_literals;
 class FakeTranscriberImpl
 {
 public:
-   FakeTranscriberImpl( std::function<void( int progress )> progressCallback )
+   FakeTranscriberImpl( std::function<bool(int progress, std::optional<bool> status)> progressCallback )
       : _progressCallback( progressCallback )
       , _transcriptionThread( [this] { ThreadWorker(); } )
    {
@@ -32,18 +32,20 @@ private:
          }
 
          std::this_thread::sleep_for ( 50ms );
-         _progressCallback( i );
+         _progressCallback( i, std::nullopt );
       }
+
+      _progressCallback( 100, true );
    }
 
-   std::function<void( int progress )> _progressCallback;
+   std::function<bool(int progress, std::optional<bool> status)> _progressCallback;
 
    std::thread _transcriptionThread;
 
    bool _exit = false;;
 };
 
-FakeTranscriber::FakeTranscriber( std::function<void( int progress )> progressCallback )
+FakeTranscriber::FakeTranscriber( std::function<bool(int progress, std::optional<bool> status)> progressCallback )
 {
    _impl = std::make_unique<FakeTranscriberImpl>( progressCallback );
 }
