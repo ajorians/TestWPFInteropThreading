@@ -1,6 +1,9 @@
 #pragma once
 
 #include <functional>
+#include <memory>
+
+class FakeTranscriber;
 
 using TranscriptionProgressCallback = std::function<void( int progress )>;
 
@@ -15,4 +18,6 @@ public:
 
 private:
    TranscriptionProgressCallback _transcriptionProgressCallback;
+
+   std::unique_ptr<FakeTranscriber> _transcriber;
 };

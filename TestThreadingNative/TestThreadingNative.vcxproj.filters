@@ -18,9 +18,15 @@
     <ClCompile Include="Transcribing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FakeTranscriber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\TestThreadingNative\Transcribing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TestThreadingNative\FakeTranscriber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

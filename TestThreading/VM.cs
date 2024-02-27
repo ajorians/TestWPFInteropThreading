@@ -26,8 +26,6 @@ namespace TestThreading
       private void TestStuff()
       {
          _interop.StartTranscription();
-
-         //Percentage = 100;
       }
 
       public string PercentageString => Percentage.ToString();

@@ -1,8 +1,9 @@
 #include "Transcribing.h"
 
+#include "FakeTranscriber.h"
+
 Transcribing::Transcribing()
 {
-
 }
 
 void Transcribing::SetCallbacks( TranscriptionProgressCallback transcriptionProgressCallback )
@@ -12,7 +13,10 @@ void Transcribing::SetCallbacks( TranscriptionProgressCallback transcriptionProg
 
 void Transcribing::StartTranscribing()
 {
-   //Start Thread
+   _transcriber.reset();
 
-   _transcriptionProgressCallback( 45 );
+   _transcriber = std::make_unique<FakeTranscriber>( [this]( int progress )
+   {
+      _transcriptionProgressCallback( progress );
+   } );
 }

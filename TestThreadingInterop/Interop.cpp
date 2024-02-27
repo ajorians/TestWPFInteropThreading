@@ -13,9 +13,6 @@ Interop::Interop()
 void Interop::StartTranscription()
 {
    _transcribing->StartTranscribing();
-
-
-   
 }
 
 void Interop::TranscriptionProgressHandler( int progress )
