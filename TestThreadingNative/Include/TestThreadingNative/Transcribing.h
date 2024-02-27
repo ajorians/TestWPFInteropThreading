@@ -22,6 +22,9 @@ public:
    void StartTranscribing();
 
 private:
+   void OnTranscriptionStarted();
+   void OnTranscriptionCompleted();
+
    TranscriptionStartedCallback _transcriptionStartedCallback;
    TranscriptionProgressCallback _transcriptionProgressCallback;
    TranscriptionFinishedCallback _transcriptionFinishedCallback;

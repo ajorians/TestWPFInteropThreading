@@ -25,17 +25,11 @@ void Transcribing::StartTranscribing()
       {
          if ( status.value() )
          {
-            if ( _transcriptionStartedCallback )
-            {
-               _transcriptionStartedCallback();
-            }
+            OnTranscriptionStarted();
          }
          else
          {
-            if ( _transcriptionFinishedCallback )
-            {
-               _transcriptionFinishedCallback();
-            }
+            OnTranscriptionCompleted();
          }
       }
 
@@ -43,4 +37,22 @@ void Transcribing::StartTranscribing()
 
       return true;
    } );
+}
+
+void Transcribing::OnTranscriptionStarted()
+{
+   if ( _transcriptionStartedCallback )
+   {
+      _transcriptionStartedCallback();
+   }
+}
+
+void Transcribing::OnTranscriptionCompleted()
+{
+   if ( _transcriptionFinishedCallback )
+   {
+      //... 
+
+      _transcriptionFinishedCallback();
+   }
 }
