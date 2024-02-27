@@ -1,23 +1,23 @@
-#include "Transcribing.h"
+#include "Behavior.h"
 
 #include "FakeTranscriber.h"
 
 #include <cassert>
 
-Transcribing::Transcribing()
+Behavior::Behavior()
 {
 }
 
-void Transcribing::SetCallbacks( TranscriptionStartedCallback transcriptionStartedCallback,
-                                 TranscriptionProgressCallback transcriptionProgressCallback,
-                                 TranscriptionFinishedCallback transcriptionFinishedCallback )
+void Behavior::SetCallbacks( TranscriptionStartedCallback transcriptionStartedCallback,
+                             TranscriptionProgressCallback transcriptionProgressCallback,
+                             TranscriptionFinishedCallback transcriptionFinishedCallback )
 {
    _transcriptionStartedCallback = transcriptionStartedCallback;
    _transcriptionProgressCallback = transcriptionProgressCallback;
    _transcriptionFinishedCallback = transcriptionFinishedCallback;
 }
 
-void Transcribing::StartTranscribing()
+void Behavior::StartTranscribing()
 {
    _threadId = std::this_thread::get_id();
 
@@ -43,7 +43,7 @@ void Transcribing::StartTranscribing()
    } );
 }
 
-void Transcribing::OnTranscriptionStarted()
+void Behavior::OnTranscriptionStarted()
 {
    if ( _transcriptionStartedCallback )
    {
@@ -51,7 +51,7 @@ void Transcribing::OnTranscriptionStarted()
    }
 }
 
-void Transcribing::OnTranscriptionCompleted()
+void Behavior::OnTranscriptionCompleted()
 {
    auto this_threadID = std::this_thread::get_id();
    assert( _threadId == this_threadID );

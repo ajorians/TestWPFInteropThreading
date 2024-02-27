@@ -5,7 +5,7 @@ using namespace MyInterop;
 
 Interop::Interop()
 {
-   _transcribing = new Transcribing();
+   _transcribing = new Behavior();
 
    _transcribing->SetCallbacks( InteropHelper::DelegateToStdFunction<TranscriptionStartedCallback>( _transcriptionStartedDelegate ),
                                 InteropHelper::DelegateToStdFunction<TranscriptionProgressCallback>( _transcriptionProgressDelegate ),

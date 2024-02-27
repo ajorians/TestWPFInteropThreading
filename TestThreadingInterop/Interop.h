@@ -2,7 +2,7 @@
 
 #include "TranscriptionProgressEventArgs.h"
 
-#include <TestThreadingNative/Transcribing.h>
+#include <TestThreadingNative/Behavior.h>
 
 #include <functional>
 
@@ -20,7 +20,7 @@ namespace MyInterop
       virtual event System::EventHandler^ TranscriptionFinished;
 
    private:
-      Transcribing* _transcribing;
+      Behavior* _transcribing;
 
       void TranscriptionStartedHandler();
       void TranscriptionProgressHandler( int progress );

@@ -152,11 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FakeTranscriber.cpp" />
-    <ClCompile Include="Transcribing.cpp" />
+    <ClCompile Include="Behavior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\TestThreadingNative\FakeTranscriber.h" />
-    <ClInclude Include="Include\TestThreadingNative\Transcribing.h" />
+    <ClInclude Include="Include\TestThreadingNative\Behavior.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

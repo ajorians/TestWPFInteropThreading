@@ -11,10 +11,10 @@ using TranscriptionStartedCallback = std::function<void()>;
 using TranscriptionProgressCallback = std::function<void(int progress)>;
 using TranscriptionFinishedCallback = std::function<void()>;
 
-class Transcribing
+class Behavior
 {
 public:
-   Transcribing();
+   Behavior();
 
    void SetCallbacks( TranscriptionStartedCallback transcriptionStartedCallback,
                       TranscriptionProgressCallback transcriptionProgressCallback,
