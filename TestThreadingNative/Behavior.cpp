@@ -10,13 +10,14 @@
 #include <string>
 #include <mutex>
 
+#include "Dispatcher.h"
+
 using namespace std::chrono_literals;
 
 class BehaviorImpl
 {
 public:
    BehaviorImpl()
-      : m_timer( [this]() { OnTimerElapsed(); }, 500ms )
    {
    }
 
@@ -41,20 +42,27 @@ public:
          {
             if ( status.value() )
             {
-               OnTranscriptionStarted();
+               _dispatcher.CallOnMainThread( [this]()
+               {
+                  OnTranscriptionStarted();
+               } );
             }
             else
             {
-               OnTranscriptionCompleted();
+               _dispatcher.CallOnMainThread( [this]()
+               {
+                  OnTranscriptionCompleted();
+               } );
             }
          }
 
-      _transcriptionProgressCallback( progress );
+      _dispatcher.CallOnMainThread( [=, this]()
+      {
+         _transcriptionProgressCallback( progress );
+      } );
 
       return true;
       } );
-
-      m_timer.StartTimer();
    }
 
 private:
@@ -68,37 +76,15 @@ private:
 
    void OnTranscriptionCompleted()
    {
-      std::unique_lock myLock( _messageMutex );
-
-      _messages.push_back( "Completed :)" );
-
-      //auto this_threadID = std::this_thread::get_id();
-      //assert( _threadId == this_threadID );
-
-      ////Do things that ought to run on main thread.
-
-      //if ( _transcriptionFinishedCallback )
-      //{
-      //   _transcriptionFinishedCallback();
-      //}
-   }
-
-   void OnTimerElapsed()
-   {
       auto this_threadID = std::this_thread::get_id();
       assert( _threadId == this_threadID );
 
-      std::unique_lock myLock( _messageMutex );
+      //Do things that ought to run on main thread.
 
-      for ( const auto& message : _messages )
+      if ( _transcriptionFinishedCallback )
       {
-         if ( _transcriptionFinishedCallback )
-         {
-            _transcriptionFinishedCallback();
-         }
+         _transcriptionFinishedCallback();
       }
-
-      _messages.clear();
    }
 
    std::thread::id _threadId;
@@ -111,7 +97,7 @@ private:
    std::vector<std::string> _messages;
 
    std::mutex _messageMutex;
-   GenericTimer m_timer;
+   Dispatcher _dispatcher;
 };
 
 Behavior::Behavior()

@@ -3,8 +3,6 @@
 #include <functional>
 #include <memory>
 
-#include "GenericTimer.h"
-
 class FakeTranscriber;
 
 using TranscriptionStartedCallback = std::function<void()>;

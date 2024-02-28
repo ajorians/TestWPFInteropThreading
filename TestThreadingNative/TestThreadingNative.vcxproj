@@ -167,11 +167,13 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dispatcher.cpp" />
     <ClCompile Include="FakeTranscriber.cpp" />
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="GenericTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\TestThreadingNative\Dispatcher.h" />
     <ClInclude Include="Include\TestThreadingNative\FakeTranscriber.h" />
     <ClInclude Include="Include\TestThreadingNative\Behavior.h" />
     <ClInclude Include="Include\TestThreadingNative\GenericTimer.h" />
